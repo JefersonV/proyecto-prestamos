@@ -1,1 +1,1 @@
-/* Proceso Préstamo sobre saldo */
+/* Archivo de ejecución y validación del mini programa */
