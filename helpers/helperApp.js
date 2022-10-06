@@ -1,84 +1,88 @@
 const fs = require('fs')
+const fill = require('fill-range');
 /* Archivo para modular la lógica*/
-const crearPrestamo = async(nombre='someone', apellido='example', dpi=1234567890123, nit='12345678',monto=50000,intAnual=0.5, periodo=5, tabla=[]) => {
-// Es una calculadora para el usuario general?
+const crearPrestamo = async(nombre='someone', apellido='example', dpi=1234567890123, nit='12345678',monto=100000,intAnual=0.5, periodo=5, tabla=[]) => {
 // **** Entradas *****
 // Capital (monto del préstamo)
 // Interés anual %
 // Período en años (plazo)
 // Datos del cliente (nombre, apellido, dpi, nit)
-  tabla = [
-    {
-      meses: []
-    },
-    {
-      intereses: []
-    },
-    {
-      amortizacion: []
-    },
-    {
-      total: []
-    },
-    {
-      saldo: []
-    }
-  ]
+  let mesesArray = []
+  let saldoArray = []
+  let amortizacionArray = []
+  let auxArray = []
+  let interesesArray = []
+  let totalArray = []
+  saldoArray.push(monto)
+
   try {
     // **** Proceso ****
-    let resultado = ''
     let meses = periodo * 12
-    let resultadoAmortizacion = 0
+    let resultadoAmortizacion
     // meses
     for (let i = 0; i<=meses; i++) {
-      tabla[0].meses.push(i)
+      mesesArray.push(i)
     }
     
     // Amortización de capital
-    // Amortización = capital / cantidad de meses (es una constante)
+    // Amortización = monto / cantidad de meses (es una constante)
     for (let i = 0; i<=meses; i++) {
       resultadoAmortizacion = monto/meses
-      tabla[2].amortizacion.push(resultadoAmortizacion)
+      amortizacionArray.push(resultadoAmortizacion)
     }
 
-    //Saldo
-    // Saldo = saldo [i] - amortización de capital
-    for (let i=0; i<=meses; i++) {
-      //let saldoRestante = monto-resultadoAmortizacion
-      tabla[4].saldo.push(monto-833.33)
+    // Aux
+    /* for (let i = 0; i<=meses; i++) {
+      //console.log(amortizacionArray[i])
+      let nuevoSaldo = 0
+      nuevoSaldo += amortizacionArray[i]
+      if(i > 0) {
+
+      }
+      auxArray.push(nuevoSaldo)
+      
+    } */
+    for (let i = 0; i<=meses; i++) {
+      let valor = monto
+      while(valor >= resultadoAmortizacion ) {
+        const nuevo = valor -= resultadoAmortizacion
+        auxArray.push(nuevo)
+      }
     }
     
+    let resultadoSaldo = auxArray.reduce((a,e) => {
+      if(!a.find(d => d == e)) {
+        a.push(e)
+      }
+      return a;
+    }, [])
+
+
+    console.log(resultadoSaldo)
+    //Saldo
+    // Saldo = saldo [i] - amortización de capital
+/*     for (let i=0; i<=meses; i++) {
+      let saldoRestante = monto-resultadoAmortizacion
+      let nuevoSaldo
+      saldoArray.push(nuevoSaldo)
+    } */
 
     // intereses pagados
     // Intereses pagados varía = Saldo pendiente / porcentaje mensual (hay que iterar)
-  /*   for(let i = meses; i>=0; i--) {
-      const resultadoInteres = monto - 
-      tabla[1].intereses.push(resultadoInteres)
-    }
-     */
+    const algo = fill('0', monto, resultadoAmortizacion)
+    console.log(algo)
     //Total
     // Total = amortización + intereses pagados
-/*     for (let i=0; i<=meses; i++) {
+    /* for (let i=0; i<=meses; i++) {
 
-      tabla[3].total.push()
-    }
- */
+    } */
 
-    console.log(tabla.meses)
-    console.log(resultadoAmortizacion)
-    // **** Salida ****
-    // Datos del cliente en modo de tabla (estilo encabezado de un documeto)
-    /* Mes -> desde el mes 0 
-    Interesese pagados -> cuánto se paga por mes 
-    Amortización de capital -> Devolución del dinero prestado sin contar los intereses 
-    Total ->  intereses pagados + amortización
-    Saldo -> Cuánto queda pendiente de la deuda.
-    */
+    tabla = [{mesesArray},{amortizacionArray},{resultadoSaldo}]
+
   return tabla
   }catch(err) {
     throw err
   }
-  // equivalea a el .resolve
 }
 
 module.exports = {
