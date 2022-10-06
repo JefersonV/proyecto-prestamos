@@ -26,10 +26,6 @@ const crearPrestamo = async(nombre='someone', apellido='example', dpi=1234567890
   ]
   try {
     // **** Proceso ****
-
-    // Amortización = capital / cantidad de meses (es una constante)
-    // Intereses pagados varía = Saldo pendiente / porcentaje mensual (hay que iterar)
-    // Total = amortización + intereses pagados
     let resultado = ''
     let meses = periodo * 12
     let resultadoAmortizacion = 0
@@ -39,6 +35,7 @@ const crearPrestamo = async(nombre='someone', apellido='example', dpi=1234567890
     }
     
     // Amortización de capital
+    // Amortización = capital / cantidad de meses (es una constante)
     for (let i = 0; i<=meses; i++) {
       resultadoAmortizacion = monto/meses
       tabla[2].amortizacion.push(resultadoAmortizacion)
@@ -53,12 +50,14 @@ const crearPrestamo = async(nombre='someone', apellido='example', dpi=1234567890
     
 
     // intereses pagados
+    // Intereses pagados varía = Saldo pendiente / porcentaje mensual (hay que iterar)
   /*   for(let i = meses; i>=0; i--) {
       const resultadoInteres = monto - 
       tabla[1].intereses.push(resultadoInteres)
     }
      */
     //Total
+    // Total = amortización + intereses pagados
 /*     for (let i=0; i<=meses; i++) {
 
       tabla[3].total.push()
