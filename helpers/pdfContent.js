@@ -37,7 +37,7 @@ const llenarPrestamo = (monto = 20000, interes = 4, periodo = 2) => {
 
 //Falta crear los yargs para capturarlos desde aqui
 llenarSolicitante(argv.n, argv.d, argv.t, argv.v);
-llenarPrestamo(argv.catch, argv.z, argv.a);
+llenarPrestamo(argv.c, argv.z, argv.a);
 
 //Contenido de la tabla la tabla
 const docDefinition = {
@@ -67,17 +67,6 @@ const docDefinition = {
         widths: ["*", "auto", 100, "*", "*"],
 
         body: info,
-        // body: [
-        //   [
-        //     { text: "Mes", bold: true },
-        //     { text: "Intereses", bold: true },
-        //     { text: "Amortización", bold: true },
-        //     { text: "Total", bold: true },
-        //     { text: "Saldo", bold: true },
-        //   ],
-        //   info,
-        //   // ["Prueba", "Value 2", "Value 3", "Value 4", "Hola"],
-        // ],
       },
     },
   ],

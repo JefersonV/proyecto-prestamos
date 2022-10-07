@@ -1,4 +1,4 @@
-const data = require("../data");
+const data = require("./helperApp");
 let info = [];
 
 for (let i = 0; i < data.length; i++) {
