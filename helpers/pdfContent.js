@@ -48,7 +48,7 @@ const docDefinition = {
     { text: `Nombre: ${solicitante.nombre}`, style: "label" },
     { text: `Dirección: ${solicitante.direccion}`, style: "label" },
     { text: `Teléfono: ${solicitante.telefono}`, style: "label" },
-    { text: `Teléfono: ${solicitante.dpi}`, style: "label" },
+    { text: `DPI: ${solicitante.dpi}`, style: "label" },
     "\n",
     { text: `Monto: Q.${prestamo.monto}`, style: "label" },
     { text: `Intereses: ${prestamo.interes}%`, style: "label" },
