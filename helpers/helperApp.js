@@ -57,34 +57,8 @@ const crearPrestamo = async(nombre='someone', apellido='example', dpi=1234567890
       total = interesesArray[i-1] + resultadoAmortizacion
       totalArray.push(total)
     }
-    if(listar) {
-      console.log('-------------------------------')
-      console.log('|Préstamo sobre saldos')
-      console.log('-------------------------------')
-      console.log(`|Nombre: ${nombre} ${apellido}`)
-      console.log(`|DPI: ${dpi} NIT: ${nit}`)
-      console.log(`|Dirección: ${direccion}`)
-      console.log(`|Teléfono: ${telefono}`)
-      console.log('-------------------------------')
-      console.log(`|Monto del préstamo: ${monto}`)
-      console.log(`|Porcentaje de Interés: ${intAnual}`)
-      console.log(`|Período: ${periodo} años`)
-      console.log(`|Período en meses: ${meses}`)
-      console.log('-------------------------------')
-      console.log('|Mes|Intereses pagados |Capital amortizado | Total | Saldo |')
-      for(let i = 0; i<=meses; i++) {
-        console.log(`|${mesesArray[i]}   |${interesesArray[i]}          |${amortizacionArray[i]}     | ${totalArray[i]}    |${resultadoSaldo[i]    }|`)
-      }
-    }
-    // tabla = [{mesesArray},{amortizacionArray},{resultadoSaldo},{interesesArray},{totalArray}]
-    /* let tabla2 = []
-    for(let i = 0; i<=meses; i++) {
-      tabla2 = {
-        mes: mesesArray[i]
-      }
-    } */
-
-    // console.log(tabla2)
+    tabla = [{mesesArray},{amortizacionArray},{resultadoSaldo},{interesesArray},{totalArray}]
+    
   return tabla
   }catch(err) {
     throw err
